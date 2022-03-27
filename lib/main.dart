@@ -76,14 +76,15 @@ class MyApp extends StatelessWidget {
         BlocProvider<UpcomingMovieCubit>(
           create: (context) => UpcomingMovieCubit()..getUpcomingMovies(),
         ),
-        BlocProvider<MovieDetailCubit>(
-          create: (context) => MovieDetailCubit(),
-        ),
-        BlocProvider<MovieCastCubit>(
-          create: (context) => MovieCastCubit(),
-        ),
+        // BlocProvider<MovieDetailCubit>(
+        //   create: (context) => MovieDetailCubit(),
+        // ),
+        // BlocProvider<MovieCastCubit>(
+        //   create: (context) => MovieCastCubit(),
+        // ),
         BlocProvider<SimiliarMovieCubit>(
           create: (context) => SimiliarMovieCubit(),
+
         ),
       ],
       child: MaterialApp(

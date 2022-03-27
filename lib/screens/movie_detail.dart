@@ -22,6 +22,7 @@ List<String> popupMenuItem = ['Share', 'Visit Website'];
 
 class DetailMovie extends StatefulWidget {
   final int movieId;
+
   DetailMovie({required this.movieId});
 
   @override
@@ -63,9 +64,9 @@ class _DetailMovieState extends State<DetailMovie> {
         child: BlocBuilder<MovieDetailCubit, MovieDetailState>(
             builder: (context, state) {
           if (state is MovieDetailLoadInProgress) {
-            return Container(
+            return SizedBox(
               height: MediaQuery.of(context).size.height * 0.8,
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     Colors.white,
@@ -103,7 +104,7 @@ class _DetailMovieState extends State<DetailMovie> {
         return CarouselItem(
           avatar: item.filePath,
           title: '',
-          onTap: (){},
+          onTap: () {},
         );
       }).toList(),
       options: CarouselOptions(
@@ -132,7 +133,7 @@ class _DetailMovieState extends State<DetailMovie> {
                     data.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 28.0,
                       color: Colors.white,
                       fontWeight: FontWeight.w300,
@@ -144,18 +145,17 @@ class _DetailMovieState extends State<DetailMovie> {
                 flex: 1,
                 child: PopupMenuButton(
                   color: ColorBase.martinique,
-                  offset: Offset(0, 40),
-                  icon: Icon(Icons.more_vert, color: Colors.white),
+                  offset: const Offset(0, 40),
+                  icon: const Icon(Icons.more_vert, color: Colors.white),
                   tooltip: 'More options',
                   elevation: 5,
-                  onSelected: (value) =>
-                      _onSelectedPopupMenu(value as String, data.homepage),
+                  onSelected: (value) => _onSelectedPopupMenu(value as String, data.homepage),
                   itemBuilder: (context) => popupMenuItem.map((menu) {
                     return PopupMenuItem(
                       value: menu,
                       child: Text(
                         menu,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
@@ -168,12 +168,12 @@ class _DetailMovieState extends State<DetailMovie> {
           RichText(
             text: TextSpan(
               text: '${year.toString()} ',
-              style: TextStyle(fontSize: 12.0, color: Colors.white70),
+              style: const TextStyle(fontSize: 12.0, color: Colors.white70),
               children: <TextSpan>[
-                TextSpan(text: '• '),
+                const TextSpan(text: '• '),
                 TextSpan(
                   text: Helper.convertHoursMinutes(data.runtime),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12.0,
                   ),
                 ),
@@ -187,7 +187,7 @@ class _DetailMovieState extends State<DetailMovie> {
 
   Widget _movieDescInfo(MovieDetail data) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,7 +207,7 @@ class _DetailMovieState extends State<DetailMovie> {
               padding: const EdgeInsets.only(left: 8.0),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 30,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -215,7 +215,7 @@ class _DetailMovieState extends State<DetailMovie> {
                       itemBuilder: (context, index) {
                         Genre genre = data.genres[index];
                         return Padding(
-                          padding: EdgeInsets.only(right: 6.0),
+                          padding: const EdgeInsets.only(right: 6.0),
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -224,13 +224,13 @@ class _DetailMovieState extends State<DetailMovie> {
                               borderRadius: BorderRadius.circular(3.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                 vertical: 6.0,
                                 horizontal: 12,
                               ),
                               child: Text(
                                 genre.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
@@ -246,7 +246,7 @@ class _DetailMovieState extends State<DetailMovie> {
                       data.overview,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
-                      style: TextStyle(
+                      style: const TextStyle(
                         height: 1.4,
                         color: Colors.white70,
                       ),
@@ -271,7 +271,7 @@ class _DetailMovieState extends State<DetailMovie> {
             child: Center(
               child: Column(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
@@ -280,11 +280,11 @@ class _DetailMovieState extends State<DetailMovie> {
                     child: RichText(
                       text: TextSpan(
                         text: '${data.voteAverage}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14.0,
                           color: Colors.white,
                         ),
-                        children: <TextSpan>[
+                        children: const <TextSpan>[
                           TextSpan(
                             text: '/10',
                             style: TextStyle(
@@ -296,8 +296,8 @@ class _DetailMovieState extends State<DetailMovie> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const Padding(
+                    padding: EdgeInsets.only(
                       top: 4.0,
                     ),
                     child: Text(
@@ -317,7 +317,7 @@ class _DetailMovieState extends State<DetailMovie> {
             child: Center(
               child: Column(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.attach_money,
                     color: Colors.green,
                   ),
@@ -331,13 +331,13 @@ class _DetailMovieState extends State<DetailMovie> {
                               decimalDigits: 0,
                               name: "USD ",
                             ).format(data.revenue),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const Padding(
+                    padding: EdgeInsets.only(
                       top: 4.0,
                     ),
                     child: Text(
@@ -357,7 +357,7 @@ class _DetailMovieState extends State<DetailMovie> {
             child: Center(
               child: Column(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.local_movies_outlined,
                     color: Colors.redAccent,
                   ),
@@ -365,14 +365,14 @@ class _DetailMovieState extends State<DetailMovie> {
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
                       data.status,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14.0,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const Padding(
+                    padding: EdgeInsets.only(
                       top: 4.0,
                     ),
                     child: Text(
@@ -400,20 +400,19 @@ class _DetailMovieState extends State<DetailMovie> {
           subtitle: 'See All',
           titleFontSize: 18.0,
           titleFontWeight: FontWeight.w400,
-          subtitleFontSize: 14.0, onTap: () {  },
+          subtitleFontSize: 14.0,
+          onTap: () {},
         ),
         BlocBuilder<MovieCastCubit, MovieCastState>(
           builder: (context, state) {
             if (state is MovieCastLoadInProgress) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (state is MovieCastLoadSuccess) {
-              int count = state.movieCasts.cast.length > 15
-                  ? 15
-                  : state.movieCasts.cast.length;
-              return Container(
+              int count = state.movieCasts.cast.length > 15 ? 15 : state.movieCasts.cast.length;
+              return SizedBox(
                 height: 250,
                 child: ListView.builder(
-                  padding: EdgeInsets.only(left: 12.0),
+                  padding: const EdgeInsets.only(left: 12.0),
                   scrollDirection: Axis.horizontal,
                   itemCount: count,
                   itemBuilder: (context, index) {
@@ -422,7 +421,8 @@ class _DetailMovieState extends State<DetailMovie> {
                       title: data.name,
                       poster: data.profilePath,
                       subtitle: data.character,
-                      onTap: () {}, rating:0 ,
+                      onTap: () {},
+                      rating: 0,
                     );
                   },
                 ),
@@ -440,17 +440,18 @@ class _DetailMovieState extends State<DetailMovie> {
     return BlocBuilder<SimiliarMovieCubit, SimiliarMovieState>(
       builder: (context, state) {
         if (state is SimiliarMovieLoadInProgress) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (state is SimiliarMovieLoadSuccess) {
           List<MovieList> similiarMovies = state.similiarMovies;
-          return similiarMovies.length > 0
+          return similiarMovies.isNotEmpty
               ? Column(
                   children: [
                     SectionHeader(
                       title: 'Similiar Movies',
-                      subtitle: 'See All', onTap: () {  },
+                      subtitle: 'See All',
+                      onTap: () {},
                     ),
-                    Container(
+                    SizedBox(
                       height: 250,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -461,10 +462,11 @@ class _DetailMovieState extends State<DetailMovie> {
                             title: data.title,
                             poster: data.posterPath,
                             rating: data.voteAverage,
-                            onTap: () => _onPressMovie(data.id), subtitle: '',
+                            onTap: () => _onPressMovie(data.id),
+                            subtitle: '',
                           );
                         },
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 12.0,
                         ),
                       ),
@@ -480,7 +482,7 @@ class _DetailMovieState extends State<DetailMovie> {
   }
 
   Widget _divider() {
-    return Divider(
+    return const Divider(
       color: Colors.white12,
       thickness: 1,
     );
