@@ -8,6 +8,7 @@ import 'package:movie_db_app/screens/search.dart';
 
 import '../blocs/moviecast/movie_cast_cubit.dart';
 import '../blocs/moviedetail/movie_detail_cubit.dart';
+import '../blocs/searchmovie/search_movie_cubit.dart';
 
 Route? generateRoutes(RouteSettings settings) {
   final Object? args = settings.arguments;
@@ -16,7 +17,13 @@ Route? generateRoutes(RouteSettings settings) {
     case Navigation.MovieHome:
       return buildRoute(settings, MovieHome());
     case Navigation.SearchPage:
-      return buildRoute(settings, SearchPage());
+      // return buildRoute(settings, SearchPage());
+      return buildRoute(
+          settings,
+          BlocProvider<SearchMovieCubit>(
+            create: (context) => SearchMovieCubit(),
+            child: SearchPage(),
+          ));
     case Navigation.MovieDetail:
       // return buildRoute(settings, DetailMovie(movieId: args as int));
       //---------------------------------------------------

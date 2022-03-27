@@ -70,9 +70,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<TopRatedMovieCubit>(
           create: (context) => TopRatedMovieCubit()..getTopRatedMovie(),
         ),
-        BlocProvider<SearchMovieCubit>(
-          create: (context) => SearchMovieCubit(),
-        ),
+        // BlocProvider<SearchMovieCubit>(
+        //   create: (context) => SearchMovieCubit(),
+        // ),
         BlocProvider<UpcomingMovieCubit>(
           create: (context) => UpcomingMovieCubit()..getUpcomingMovies(),
         ),
